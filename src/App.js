@@ -12,7 +12,7 @@ function App() {
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
     getUsers();
-  });
+  }, [usersCollectionRef]);
 
   const createUser = async () => {
     await addDoc(usersCollectionRef, { name: 'newName', age: 'newAge' });
