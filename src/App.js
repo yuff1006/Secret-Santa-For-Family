@@ -1,6 +1,6 @@
 import './App.css';
 import { app, db } from './firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 
 function App() {
@@ -13,8 +13,13 @@ function App() {
     };
     getUsers();
   });
+
+  const createUser = async () => {
+    await addDoc(usersCollectionRef, { name: 'newName', age: 'newAge' });
+  };
   return (
     <div>
+      <button onClick={createUser}>Create User</button>
       {users.map((user) => {
         return <div>{user.hello}</div>;
       })}
