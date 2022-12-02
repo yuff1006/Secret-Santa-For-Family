@@ -1,6 +1,6 @@
-import { db } from './firebase';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
-import { useEffect, useState } from 'react';
+// import { db } from './firebase';
+// import { collection, getDocs, addDoc } from 'firebase/firestore';
+// import { useEffect, useState } from 'react';
 import Login from './pages/Login';
 import NewGame from './pages/NewGame';
 import ExistingGame from './pages/ExistingGame';
@@ -10,7 +10,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Success from './pages/Success';
 
 function App() {
-  const usersCollectionRef = collection(db, 'vandellens2022');
+  // const usersCollectionRef = collection(db, 'vandellens2022');
   const navigate = useNavigate();
   // useEffect(() => {
   //   const getUsers = async () => {
