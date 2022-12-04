@@ -28,10 +28,11 @@ export default function NewGame({
     const secretKeyPairs = secretKeyForNames(nameDisplay);
     const namePairs = secretSantaMatching(nameDisplay);
     evt.preventDefault();
-    addItem(gameToken, namePairs, secretKeyPairs)
+    addItem(gameToken.toLowerCase(), namePairs, secretKeyPairs)
       .then(() => console.log('success'))
       .then(() => {
         localStorage.setItem('success', JSON.stringify(secretKeyPairs));
+        localStorage.setItem('gameToken', JSON.stringify(gameToken));
         setSecretKeyPairsContext(secretKeyPairs);
         setGameTokenContext(gameToken);
       })

@@ -167,10 +167,36 @@ code {
 }
 .success__message {
   text-align: center;
-  text-shadow: 2px 2px 2px #aaa;
+  text-shadow: 2px 2px 2px rgb(247, 244, 237);
   font-size: 60px;
   margin: 0;
+  color: rgb(212, 155, 106);
+}
+.success__token {
+  margin: 0;
+  font-size: 40px;
+  color: rgb(147, 168, 189);
+  font-weight: 800;
 }
 .success__prompt {
   font-family: serif;
+  margin: 10px 0;
+}
+.success__info-container {
+  background-color: rgb(147, 168, 189, 0.6);
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-align: start;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 0.8em;
+}
+.success__pairs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: rgb(57, 62, 61);
+}
+.success__pair {
+  margin: 0 0 5px 0;
 }
