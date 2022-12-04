@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { db } from '../firebase';
-import {
-  collection,
-  getDocs,
-  setDoc,
-  addDoc,
-  doc,
-  getDoc,
-} from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 import randomWords from 'random-words';
+import { useNavigate } from 'react-router-dom';
 
-export default function NewGame() {
-  const usersCollectionRef = collection(db, 'vandellens2022');
+export default function NewGame({
+  setSecretKeyPairsContext,
+  setGameTokenContext,
+}) {
+  const navigate = useNavigate();
   const [nameInput, setNameInput] = useState('');
   const [gameToken, setGameToken] = useState('');
   const [nameDisplay, setNameDisplay] = useState([]);
@@ -32,20 +29,21 @@ export default function NewGame() {
     const namePairs = secretSantaMatching(nameDisplay);
     evt.preventDefault();
     addItem(gameToken, namePairs, secretKeyPairs)
-      .then((data) => console.log('success'))
+      .then(() => console.log('success'))
+      .then(() => {
+        localStorage.setItem('success', JSON.stringify(secretKeyPairs));
+        setSecretKeyPairsContext(secretKeyPairs);
+        setGameTokenContext(gameToken);
+      })
+      .then(() => {
+        navigate('/success');
+      })
       .catch((err) => {
-        console.log(error);
+        console.log(err);
         setError(true);
       });
   };
-
   const addItem = async (gameToken, pairs, secretKeys) => {
-    // const listCollectionRef = collection(db, 'data');
-    // return await addDoc(listCollectionRef, {
-    //   gameToken: gameToken,
-    //   pairs: pairs,
-    //   secretKeys: secretKeys,
-    // });
     const docSnap = await getDoc(doc(db, 'data', gameToken));
     if (docSnap.exists()) {
       throw error;
@@ -111,7 +109,7 @@ export default function NewGame() {
       <div className='new__alldone-container'>
         <input
           type='text'
-          className='new__input input-field'
+          className='new__input input-field new__input-gametoken'
           placeholder='Type in a Game Token'
           value={gameToken}
           onChange={handleGameTokenChange}
