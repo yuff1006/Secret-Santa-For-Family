@@ -59,7 +59,9 @@ function App() {
           <Route
             path='/existing'
             element={
-              <ExistingGame setParticipantPair={setParticipantPairContext} />
+              <ExistingGame
+                setParticipantPairContext={setParticipantPairContext}
+              />
             }
           />
           <Route path='/results' element={<Results />} />
