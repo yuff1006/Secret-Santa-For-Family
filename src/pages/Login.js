@@ -5,12 +5,12 @@ export default function Login() {
   return (
     <div className='login'>
       <h1 className='login__header'>Welcome!</h1>
-      <p className='login__paragraph'>I want to ...</p>
+      <p className='login__paragraph'>I want to play ...</p>
       <NavLink to='/existing' className='login__button button'>
-        Participate in a Game
+        an Existing Game
       </NavLink>
       <NavLink to='/new' className='login__button button'>
-        Create a New Game
+        a New Game
       </NavLink>
     </div>
   );

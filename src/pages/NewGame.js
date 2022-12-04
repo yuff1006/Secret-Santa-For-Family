@@ -32,9 +32,12 @@ export default function NewGame({
       .then(() => console.log('success'))
       .then(() => {
         localStorage.setItem('success', JSON.stringify(secretKeyPairs));
-        localStorage.setItem('gameToken', JSON.stringify(gameToken));
+        localStorage.setItem(
+          'gameToken',
+          JSON.stringify(gameToken.toLowerCase())
+        );
         setSecretKeyPairsContext(secretKeyPairs);
-        setGameTokenContext(gameToken);
+        setGameTokenContext(gameToken.toLowerCase());
       })
       .then(() => {
         navigate('/success');
@@ -45,11 +48,11 @@ export default function NewGame({
       });
   };
   const addItem = async (gameToken, pairs, secretKeys) => {
-    const docSnap = await getDoc(doc(db, 'data', gameToken));
+    const docSnap = await getDoc(doc(db, 'data', gameToken.toLowerCase()));
     if (docSnap.exists()) {
       throw error;
     } else {
-      return await setDoc(doc(db, 'data', gameToken), {
+      return await setDoc(doc(db, 'data', gameToken.toLowerCase()), {
         pairs: pairs,
         secretKeys: secretKeys,
       });

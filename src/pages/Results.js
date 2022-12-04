@@ -1,6 +1,7 @@
 import { useContext, useRef } from 'react';
 import { AppContext } from '../context/AppContext';
 import santa from '../santa.png';
+import { NavLink } from 'react-router-dom';
 
 export default function Results() {
   const context = useContext(AppContext);
@@ -29,6 +30,9 @@ export default function Results() {
           giftee.current.toString().slice(1)}
       </p>
       <img src={santa} alt='santa' className='results__santa' />
+      <NavLink className='success__button button' to='/'>
+        Back to Starting Page
+      </NavLink>
     </div>
   );
 }
