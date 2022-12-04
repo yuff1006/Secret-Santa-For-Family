@@ -22,7 +22,7 @@ export default function ExistingGame({ setParticipantPairContext }) {
   };
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    const listCollectionRef = doc(db, 'data', gameTokenInput);
+    const listCollectionRef = doc(db, 'data', gameTokenInput.toLowerCase());
     const docSnap = await getDoc(listCollectionRef);
     if (docSnap.exists()) {
       const data = docSnap.data();
